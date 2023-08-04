@@ -1,18 +1,18 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors'); 
+import express, { json, urlencoded } from 'express';
+import { connect } from 'mongoose';
+import cors from 'cors'; 
 const DB_USER = "admin"
 const DB_PASSWORD = encodeURIComponent('@Gui92720108')
 
 
 const app = express(); 
 const PORT = process.env.PORT || 3000; 
-const userRoutes = require('./routes/UserRoutes')
+import userRoutes from './routes/UserRoutes';
 
 app.use(cors())
-app.use(express.json())
+app.use(json())
 app.use(
-    express.urlencoded({
+    urlencoded({
         extended:true
     }
     )
@@ -21,8 +21,7 @@ app.use(
 app.use("/user", userRoutes); 
 app.use("/", userRoutes); 
 
-mongoose
-    .connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@fuzion-db.umq4kca.mongodb.net/?retryWrites=true&w=majority`)
+connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@fuzion-db.umq4kca.mongodb.net/?retryWrites=true&w=majority`)
     .then(() => {
         console.log('Conectado ao Banco de Dados!')
     })
