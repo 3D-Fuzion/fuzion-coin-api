@@ -5,6 +5,10 @@ const app = express();
 const DB_USER = "admin"
 const DB_PASSWORD = encodeURIComponent('@Gui92720108')
 
+require('dotenv').config(); 
+
+const PORT = process.env.PORT || 3333; 
+
 app.use(
     express.urlencoded({
         extended:true
@@ -16,7 +20,7 @@ app.use(cors({
 }))
 app.use(express.json())
 
-const userRoutes = require('../routes/UserRoutes')
+const userRoutes = require('./routes/UserRoutes')
 
 app.use("/user", userRoutes); 
 app.use("/", userRoutes); 
@@ -30,4 +34,4 @@ mongoose
         console.log(err)
     })
 
-app.listen(3000)
+app.listen(PORT, () => console.log("Server rodando na porta " + PORT))
