@@ -1,26 +1,22 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors'); 
-const app = express(); 
 const DB_USER = "admin"
 const DB_PASSWORD = encodeURIComponent('@Gui92720108')
 
-require('dotenv').config(); 
 
-const PORT = process.env.PORT || 3333; 
+const app = express(); 
+const PORT = process.env.PORT || 3000; 
+const userRoutes = require('./routes/UserRoutes')
 
+app.use(cors())
+app.use(express.json())
 app.use(
     express.urlencoded({
         extended:true
     }
     )
 )
-app.use(cors({
-    origin: "*"
-}))
-app.use(express.json())
-
-const userRoutes = require('./routes/UserRoutes')
 
 app.use("/user", userRoutes); 
 app.use("/", userRoutes); 
