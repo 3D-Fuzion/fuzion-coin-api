@@ -8,7 +8,7 @@ const DB_USER = "admin"
 const DB_PASSWORD = encodeURIComponent('@Gui92720108')
 
 const app = express(); 
-const PORT = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000; 
 
 app.use(cors())
 app.use(express.json())
@@ -67,4 +67,6 @@ connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@fuzion-db.umq4kca.mongodb.net/?
 
 
 
-app.listen(PORT, () => console.log("Server rodando na porta " + PORT))
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`);
+      });
