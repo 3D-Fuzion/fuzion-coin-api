@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors'); 
 const app = express(); 
 const DB_USER = "admin"
 const DB_PASSWORD = encodeURIComponent('@Gui92720108')
@@ -10,7 +11,9 @@ app.use(
     }
     )
 )
-
+app.use(cors({
+    origin: "*"
+}))
 app.use(express.json())
 
 const userRoutes = require('../routes/UserRoutes')
