@@ -13,7 +13,7 @@ app.use(
 
 app.use(express.json())
 
-const userRoutes = require('./routes/UserRoutes')
+const userRoutes = require('../routes/UserRoutes')
 
 app.use("/user", userRoutes); 
 app.use("/", userRoutes); 
