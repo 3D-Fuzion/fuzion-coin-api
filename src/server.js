@@ -31,18 +31,18 @@ app.post('/user/create', async (req, res) => {
     try {
         await User.create(user)    
 
-        res.status(201).json({message: 'Usuario Inserido'}) 
+        return res.status(201).json({message: 'Usuario Inserido'}) 
     } catch (error) {
-        res.status(500).json({error: error})
+        return res.status(500).json({error: error})
     }
 })
 
 app.get('/user', async (req, res) => {
     try {
         const users = await User.find()
-        res.status(200).json(users)
+        return res.status(200).json(users)
     } catch (error) {
-        res.status(500).json({error: error})
+        return res.status(500).json({error: error})
     }
 })
 
@@ -50,17 +50,17 @@ app.get('/user/:id', async (req, res) => {
     try {
         const id = req.params.id
         const user = await User.findOne({_id: id})
-        res.status(200).json(user)
+        return res.status(200).json(user)
     } catch (error) {
-        res.status(500).json({error: error})
+        return res.status(500).json({error: error})
     }
 })
 
 app.get('/', async (req, res) => {
     try {
-        res.status(200).json("Servidor Funcionando")
+        return res.status(200).json("Servidor Funcionando")
     } catch (error) {
-        res.status(500).json({error: error})
+        return res.status(500).json({error: error})
     }
 })
 
