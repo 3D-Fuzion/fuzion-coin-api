@@ -3,29 +3,25 @@ import User from '../models/User.js';
 import express from "express";
 import cors from 'cors'; 
 
+const app = express(); 
 const port = process.env.PORT || 3000; 
 
 const DB_USER = "admin"
 const DB_PASSWORD = encodeURIComponent('@Gui92720108')
 
-const app = express(); 
 
 app.use(cors())
 app.use(express.json())
-app.use(
-    express.urlencoded({
-        extended:true
-    }
-    )
-)
 
 app.post('/user/create', async (req, res) => { 
     const {name, password} = req.body 
     const coin = 0
+    const teste = 1
     const user = { 
         name, 
         password,
-        coin
+        coin,
+        teste
     }
 
     try {
