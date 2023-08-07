@@ -1,75 +1,18 @@
-import { connect } from 'mongoose';
-import User from '../models/User.js';
-import express from "express";
-import cors from 'cors'; 
+const app = require('./app'); 
+const database = require('mongoose')
+require('dotenv').config(); 
 
-const app = express(); 
-const port = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000; 
 
 const DB_USER = "admin"
 const DB_PASSWORD = encodeURIComponent('@Gui92720108')
 
+app.listen(PORT, () => console.log('Server running on port ' + PORT)); 
 
-app.use(cors())
-app.use(express.json())
-
-app.post('/user/create', async (req, res) => { 
-    const {name, password} = req.body 
-    const coin = 0
-    const teste = 1
-    const user = { 
-        name, 
-        password,
-        coin,
-        teste
-    }
-
-    try {
-        await User.create(user)    
-
-        return res.status(201).json({message: 'Usuario Inserido'}) 
-    } catch (error) {
-        return res.status(500).json({error: error})
-    }
-})
-
-app.get('/user', async (req, res) => {
-    try {
-        const users = await User.find()
-        return res.status(200).json(users)
-    } catch (error) {
-        return res.status(500).json({error: error})
-    }
-})
-
-app.get('/user/:id', async (req, res) => {
-    try {
-        const id = req.params.id
-        const user = await User.findOne({_id: id})
-        return res.status(200).json(user)
-    } catch (error) {
-        return res.status(500).json({error: error})
-    }
-})
-
-app.get('/', async (req, res) => {
-    try {
-        return res.status(200).json("Servidor Funcionando")
-    } catch (error) {
-        return res.status(500).json({error: error})
-    }
-})
-
-
-
-connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@fuzion-db.umq4kca.mongodb.net/?retryWrites=true&w=majority`)
+database.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@fuzion-db.umq4kca.mongodb.net/?retryWrites=true&w=majority`)
     .then(() => {
         console.log('Conectado ao Banco de Dados!')
     })
     .catch((err) => {
         console.log(err)
     })
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
