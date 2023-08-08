@@ -1,14 +1,14 @@
-import { getAll, create, logIn, remove, changeCoinQuantity } from './routes/UserCommands.js';
-import { logIn as _logIn, signIn } from './routes/ManagerCommands.js';
-import { Router } from 'express';
-const router = Router()
+import { GetAll } from "./routes/UserCommands.js";
+import { LogIn, SignIn } from "./routes/ManagerCommands.js";
+import { Router } from "express";
+const router = Router();
 
-router.get('/user', getAll); 
-router.post('/user', create); 
-router.post('/user/login', logIn);
-router.delete('/user/:id', remove); 
-router.post('/login', _logIn); 
-router.post('/manager', signIn); 
-router.post('/manager/changecoin', changeCoinQuantity); 
+router.get("/user", GetAll);
+// router.post("/user", Create);
+// router.post("/user/login", LogIn);
+// router.delete("/user/:id", Remove);
+// router.post("/login", LogIn);
+// router.post("/manager", SignIn);
+// router.post("/manager/changecoin", ChangeCoinQuantity);
 
-export default router; 
+export default router;

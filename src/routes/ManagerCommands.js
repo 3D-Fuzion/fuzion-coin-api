@@ -1,6 +1,6 @@
 import { Manager } from '../models/Manager.js';
 
-const logIn = async (req, res) => {  
+export const LogIn = async (req, res) => {  
     try 
     {
       const {email, password} = req.body; 
@@ -22,7 +22,7 @@ const logIn = async (req, res) => {
     }
 }
 
-const signIn = async (req, res) => {  
+export const SignIn = async (req, res) => {  
   try 
   {
     const {email, password} = req.body; 
@@ -38,8 +38,3 @@ const signIn = async (req, res) => {
     res.status(500).json({error: error})
   }
 }
-
-module.exports = {	
-  logIn,
-  signIn, 
-}; 
