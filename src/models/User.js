@@ -1,9 +1,11 @@
-import { model } from 'mongoose'
+const model = require('mongoose').model
 
 const User = model('User', { 
+    email : String, 
     name : String, 
     password : String,
     coin : Number,
 })
 
-export default User
+
+module.exports = User
