@@ -11,9 +11,11 @@ export const GetAll = async function (req, res) {
 
 export const Create = async function (req, res) {
   try {
-    const { email, name, password } = req.body;
+    const { email, name, password, cpf } = req.body;
     const newUser = {
       email,
+      name,
+      cpf,
       password,
       coin: 0,
     };
@@ -55,7 +57,7 @@ export const ChangeCoinQuantity = async function (req, res) {
 export const Delete = async function (req, res) {
   try {
     const { userId } = req.params.id;
-    await deleteOne({ id: userId });
+    await User.deleteOne({ id: userId });
     res.status(200).json("Usuario Removido");
   } catch (error) {
     res.status(500).json({ error: error });

@@ -1,8 +1,9 @@
-import { model } from 'mongoose'
+import { model } from "mongoose";
 
-export const User = model('User', { 
-    name : String, 
-    password : String,
-    coin : Number,
-})
-
+export const User = model("User", {
+  name: String,
+  email: String,
+  cpf: String,
+  password: String,
+  coin: Number,
+});

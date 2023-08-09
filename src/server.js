@@ -1,8 +1,10 @@
 import { connect } from "mongoose";
 import express, { json } from "express";
 import router from "./router.js";
+import cors from "cors";
 const app = express();
 
+app.use(cors());
 app.use(json());
 app.use(router);
 
