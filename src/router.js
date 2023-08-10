@@ -1,4 +1,10 @@
-import { GetAll, Create, Delete } from "./routes/UserCommands.js";
+import {
+  GetAll,
+  Create,
+  Delete,
+  RemoveCoin,
+  AddCoin,
+} from "./routes/UserCommands.js";
 import { LogIn, SignIn } from "./routes/ManagerCommands.js";
 import { Router } from "express";
 const router = Router();
@@ -9,6 +15,7 @@ router.post("/user", Create);
 router.delete("/user/:id", Delete);
 // router.post("/login", LogIn);
 // router.post("/manager", SignIn);
-// router.post("/manager/changecoin", ChangeCoinQuantity);
+router.post("/manager/removecoin", RemoveCoin);
+router.post("/manager/addcoin", AddCoin);
 
 export default router;

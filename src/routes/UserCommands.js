@@ -42,13 +42,25 @@ export const LogIn = async function (req, res) {
   }
 };
 
-export const ChangeCoinQuantity = async function (req, res) {
+export const AddCoin = async function (req, res) {
   try {
     const { userId, newValue } = req.body;
-    const user = await findById(userId);
-    user.coin = newValue;
+    const user = await User.findById(userId);
+    user.coin += Number(newValue);
     user.save();
-    res.status(200).json("Valor alterado para " + newValue);
+    res.status(200).json(newValue + " Adicionado");
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export const RemoveCoin = async function (req, res) {
+  try {
+    const { userId, newValue } = req.body;
+    const user = await User.findById(userId);
+    user.coin -= Number(newValue);
+    user.save();
+    res.status(200).json(newValue + " Removido");
   } catch (error) {
     res.status(500).json({ error: error });
   }
