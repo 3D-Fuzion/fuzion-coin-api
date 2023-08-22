@@ -4,12 +4,14 @@ import {
   Delete,
   RemoveCoin,
   AddCoin,
+  GetCoin,
 } from "./routes/UserCommands.js";
 import { LogIn, SignIn } from "./routes/ManagerCommands.js";
 import { Router } from "express";
 const router = Router();
 
 router.get("/user", GetAll);
+router.get("/coin/:id", GetCoin);
 router.post("/user", Create);
 // router.post("/user/login", LogIn);
 router.delete("/user/:id", Delete);

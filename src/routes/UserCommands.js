@@ -42,6 +42,20 @@ export const LogIn = async function (req, res) {
   }
 };
 
+export const GetCoin = async function (req, res) {
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id);
+    if (user == null) {
+      res.status(200).json("Usuario Nao Encontrado");
+    } else {
+      res.status(200).json({ coin: user.coin });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 export const AddCoin = async function (req, res) {
   try {
     const { userId, newValue } = req.body;
