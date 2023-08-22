@@ -1,4 +1,15 @@
 import { User } from "../models/User.js";
+import jwt from "jsonwebtoken";
+const SECRET = "9817236498172346981237";
+
+export const VerifyToken = async function (req, res, next) {
+  const token = req.headers["x-acess-token"];
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) return res.status(401).end();
+    req.userId = decoded.userEmail;
+    next();
+  });
+};
 
 export const GetAll = async function (req, res) {
   try {
@@ -29,11 +40,16 @@ export const Create = async function (req, res) {
 export const LogIn = async function (req, res) {
   try {
     const { email, password } = req.body;
-    const user = await findOne({ email: email });
+    const user = await User.findOne({ email: email });
     if (user == null) {
       res.status(200).json("Usuario Nao Encontrado");
     } else if (user.password == password) {
-      res.status(200).json("Login Realizado com Sucesso");
+      const token = jwt.sign({ userEmail: user.email }, SECRET, {
+        expiresIn: 300,
+      });
+      res
+        .status(200)
+        .json({ message: "Login Realizado com Sucesso", token: token });
     } else if (user.password != password) {
       res.status(200).json("Senha Incorreta");
     }
