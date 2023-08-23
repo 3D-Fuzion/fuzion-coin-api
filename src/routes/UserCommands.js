@@ -47,9 +47,11 @@ export const LogIn = async function (req, res) {
       const token = jwt.sign({ userEmail: user.email }, SECRET, {
         expiresIn: 300,
       });
-      res
-        .status(200)
-        .json({ message: "Login Realizado com Sucesso", token: token });
+      res.status(200).json({
+        message: "Login Realizado com Sucesso",
+        token: token,
+        id: user.id,
+      });
     } else if (user.password != password) {
       res.status(400).json("Senha Incorreta");
     }
