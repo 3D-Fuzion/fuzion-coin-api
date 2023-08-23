@@ -11,7 +11,7 @@ import {
 import { Router } from "express";
 const router = Router();
 
-router.get("/user", VerifyToken, GetAll);
+router.get("/user", GetAll);
 router.get("/coin/:id", VerifyToken, GetCoin);
 router.post("/user", VerifyToken, Create);
 router.post("/user/login", LogIn);

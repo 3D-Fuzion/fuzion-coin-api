@@ -51,7 +51,7 @@ export const LogIn = async function (req, res) {
         .status(200)
         .json({ message: "Login Realizado com Sucesso", token: token });
     } else if (user.password != password) {
-      res.status(200).json("Senha Incorreta");
+      res.status(400).json("Senha Incorreta");
     }
   } catch (error) {
     res.status(500).json({ error: error });

@@ -8,7 +8,7 @@ app.use(cors());
 app.use(json());
 app.use(router);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const DB_USER = "admin";
 const DB_PASSWORD = encodeURIComponent("@Gui92720108");
