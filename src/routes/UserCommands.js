@@ -42,10 +42,10 @@ export const LogIn = async function (req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
     if (user == null) {
-      res.status(200).json("Usuario Nao Encontrado");
+      res.status(404).json("Usuario Nao Encontrado");
     } else if (user.password == password) {
       const token = jwt.sign({ userEmail: user.email }, SECRET, {
-        expiresIn: 300,
+        expiresIn: 120,
       });
       res.status(200).json({
         message: "Login Realizado com Sucesso",
