@@ -107,3 +107,7 @@ export const Delete = async function (req, res) {
     res.status(500).json({ error: error });
   }
 };
+
+export const PixTransfer = async function (req, res) {
+  //TODO Codigo de Transferencia
+};

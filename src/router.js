@@ -7,6 +7,7 @@ import {
   GetCoin,
   LogIn,
   VerifyToken,
+  PixTransfer,
 } from "./routes/UserCommands.js";
 
 import { Authentication, VerifyApiStatus } from "./routes/ServerCommands.js";
@@ -16,6 +17,7 @@ const router = Router();
 router.get("/user", GetAll);
 router.post("/user", VerifyToken, Create);
 router.post("/user/login", LogIn);
+router.post("/pix", VerifyToken, PixTransfer);
 router.delete("/user/:id", VerifyToken, Delete);
 
 router.get("/status", VerifyApiStatus);
