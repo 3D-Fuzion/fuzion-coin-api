@@ -109,5 +109,22 @@ export const Delete = async function (req, res) {
 };
 
 export const PixTransfer = async function (req, res) {
-  //TODO Codigo de Transferencia
+  try {
+    const { userId, emailDest, amount } = req.body;
+    const user = await User.findById(userId);
+    if (user.coin < amount) {
+      res.status(400).json({ error: "Insufficient Coins" });
+    }
+    const destUser = await User.findOne({ email: emailDest });
+    if (destUser == null) {
+      res.status(404);
+    }
+    user.coin -= Number(amount);
+    destUser.coin += Number(amount);
+    user.save();
+    destUser.save();
+    res.status(200).json();
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
 };
