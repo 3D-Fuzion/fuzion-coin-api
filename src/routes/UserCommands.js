@@ -133,10 +133,10 @@ export const GetUserData = async function (req, res) {
   try {
     const { userId } = req.params.id;
     const user = await User.findById(userId);
-    if(user == null) {
-      res.status(404)
+    if (user == null) {
+      res.status(404);
     }
-    res.status(200).json({name : user.name, email: user.email })
+    res.status(200).json({ name: user.name, email: user.email });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -144,14 +144,13 @@ export const GetUserData = async function (req, res) {
 
 export const GetUserByEmail = async function (req, res) {
   try {
-    const { email } = req.body;
-    const user = await User.findOne({email: email});
-    if(user == null) {
-      res.status(404)
+    const { email } = req.params;
+    const user = await User.findOne({ email: email });
+    if (user == null) {
+      res.status(404);
     }
-    res.status(200).json({name : user.name, email: user.email })
+    res.status(200).json({ name: user.name, email: user.email });
   } catch (error) {
     res.status(500).json({ error: error });
   }
 };
-

@@ -9,7 +9,7 @@ import {
   VerifyToken,
   PixTransfer,
   GetUserData,
-  GetUserByEmail
+  GetUserByEmail,
 } from "./routes/UserCommands.js";
 
 import { Authentication, VerifyApiStatus } from "./routes/ServerCommands.js";
@@ -19,7 +19,7 @@ const router = Router();
 router.get("/user", GetAll);
 router.get("/coin/:id", VerifyToken, GetCoin);
 router.get("/user/:id", VerifyToken, GetUserData);
-router.get("/user/pix/search", VerifyToken, GetUserByEmail);
+router.get("/user/pix/search/:email", VerifyToken, GetUserByEmail);
 
 router.post("/pix", VerifyToken, PixTransfer);
 router.post("/user", VerifyToken, Create);
