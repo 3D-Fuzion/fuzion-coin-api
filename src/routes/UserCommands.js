@@ -45,7 +45,7 @@ export const LogIn = async function (req, res) {
       res.status(404).json("Usuario Nao Encontrado");
     } else if (user.password == password) {
       const token = jwt.sign({ userEmail: user.email }, SECRET, {
-        expiresIn: 120,
+        expiresIn: 3600,
       });
       res.status(200).json({
         message: "Login Realizado com Sucesso",
