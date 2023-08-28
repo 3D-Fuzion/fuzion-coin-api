@@ -30,7 +30,4 @@ router.delete("/user/:id", VerifyToken, Delete);
 router.get("/status", VerifyApiStatus);
 router.get("/authentication", Authentication);
 
-router.post("/manager/removecoin", VerifyToken, RemoveCoin);
-router.post("/manager/addcoin", VerifyToken, AddCoin);
-
 export default router;
